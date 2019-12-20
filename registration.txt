@@ -1,0 +1,152 @@
+<!-----------------regi.html---------------------->
+
+<div class="container">
+    <form  >
+            <div class="row">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-8">
+                    <h5 style="margin-bottom:20px;">Registration</h5></div></div>
+  
+            <div class="row">
+                <div class="col-sm-2">
+                     <label>user name</label><span>*</span>
+                </div>
+                <div class="col-sm-8">
+                    <input type="text" [(ngModel)]="user.username" name="username"  />
+                 
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">
+                    <label>phone</label><span>*</span></div>
+                <div class="col-sm-8">
+                    <input type="phone"   [(ngModel)]="user.phone" name="phone" />
+                    
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label>Email</label><span>*</span></div>
+                    <div class="col-sm-8">
+                        <input type="email"   [(ngModel)]="user.email" name="email" />
+                        
+                    </div>
+            </div>
+            </div>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label>password</label><span>*</span></div>
+                    <div class="col-sm-8">
+                        <input type="password"   [(ngModel)]="user.password" name="password" />
+                        
+                    </div>
+                </div>
+  
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label></label></div>
+                    <div class="col-sm-2">
+                    <button class="btn btn-info" (click)="submit()">Save</button>
+                    <button class="btn btn-info" (click)="cancel()" style="margin-left:10px;">cancel</button>
+                    </div>
+                </div>
+    </form>
+  </div>
+<!--------------------------regi.ts----------------------->
+import { Component, OnInit } from '@angular/core';
+import { details1 } from '../model';
+import {Router} from '@angular/router'
+
+import { from } from 'rxjs';
+import {RegiserviceService} from '../regiservice.service';
+
+@Component({
+  selector: 'app-registration',
+  templateUrl: './registration.component.html',
+  styleUrls: ['./registration.component.css']
+})
+export class RegistrationComponent implements OnInit {
+
+  user:details1={
+    username:null,
+    phone:null,
+ email:null,
+   password:null,
+
+
+    }
+
+    constructor( private __regiservice:RegiserviceService,private _router:Router) { }
+
+  
+    submit() {
+
+       //stop here if form is invalid
+      
+        this.__regiservice.save(this.user);
+      this._router.navigate(['rs']);
+      
+    }
+  
+    ngOnInit() {
+    }
+  
+  
+  }
+<!--------------------------regi-storage.html----------------------->
+<div *ngFor="let use of user">
+ 
+    <p>{{use.username}}</p>
+    <p>{{use.phone}}</p>
+    <p>{{use.email}}</p>
+    <p>{{use.password}}</p>
+</div>
+
+<!------------------regi.ts------------------------------>
+import { Component, OnInit } from '@angular/core';
+import { details1 } from '../model';
+import { RegiserviceService } from '../regiservice.service';
+
+@Component({
+  selector: 'app-regi-storage',
+  templateUrl: './regi-storage.component.html',
+  styleUrls: ['./regi-storage.component.css']
+})
+export class RegiStorageComponent implements OnInit {
+  user:details1[]=[
+  
+  ];
+  constructor( private _regiservice:RegiserviceService) { }
+
+  ngOnInit() {
+    this.user=this._regiservice.getUsers();
+  }
+}
+
+<!----------------------module.ts------------------>
+export class details1{
+    username:string;
+    phone:number;
+    email:string;
+    password:string;
+}
+<!---------------servive.ts------------------>
+import { Injectable } from '@angular/core';
+import { details1 } from './model';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class RegiserviceService {
+  userlist:details1[]=[ 
+  ];
+  getUsers():details1[]{
+      return this.userlist;
+
+  }
+  save(user:details1){                                                         
+     
+      this.userlist.push(user);
+
+  }
+
+}
