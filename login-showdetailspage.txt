@@ -1,0 +1,129 @@
+<!---------------login.html------------------>
+
+<div class="container">
+  <form  >
+          <div class="row">
+                  <div class="col-sm-2"></div>
+                  <div class="col-sm-8">
+                  <h5 style="margin-bottom:20px;">LoginForm</h5></div></div>
+
+          <div class="row">
+              <div class="col-sm-2">
+                   <label>user name</label><span>*</span>
+              </div>
+              <div class="col-sm-8">
+                  <input type="text" [(ngModel)]="user.username" name="username"  />
+               
+              </div>
+          </div>
+              <div class="row">
+                  <div class="col-sm-2">
+                      <label>password</label><span>*</span></div>
+                  <div class="col-sm-8">
+                      <input type="password"   [(ngModel)]="user.password" name="password" />
+                      
+                  </div>
+              </div>
+
+              <div class="row">
+                  <div class="col-sm-2">
+                      <label></label></div>
+                  <div class="col-sm-2">
+                  <button class="btn btn-info" (click)="submit()">Save</button>
+                  <button class="btn btn-info" (click)="cancel()" style="margin-left:10px;">cancel</button>
+                  </div>
+              </div>
+  </form>
+</div>
+<!----------------login.ts--------------->
+import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
+import {FormBuilder} from '@angular/forms'
+import {UserserviceService } from '../userservices.services';
+import { from } from 'rxjs';
+import { Details} from '../model';
+
+@Component({
+  selector: 'app-loginform',
+  templateUrl: './loginform.component.html',
+  styleUrls: ['./loginform.component.css']
+})
+export class LoginformComponent implements OnInit {
+  user:Details={
+    username:null,
+   password:null
+
+    }
+
+    constructor( private __userService:UserserviceService, private _router:Router) { }
+
+  
+    submit() {
+
+       //stop here if form is invalid
+      
+        this.__userService.save(this.user);
+      this._router.navigate(['logindetails']);
+      
+    }
+  
+    ngOnInit() {
+    }
+  
+  
+  }
+<!--------------------storage.html-------------------->
+<div *ngFor="let use of user">
+ 
+    <p>{{use.username}}</p>
+    <p>{{use.password}}</p>
+</div>
+<!-----------------storage.ts----------------->
+import { Component, OnInit } from '@angular/core';
+import { UserserviceService } from '../userservices.services';
+import {Details} from '../model'
+import { from } from 'rxjs';
+@Component({
+  selector: 'app-stotage',
+  templateUrl: './stotage.component.html',
+  styleUrls: ['./stotage.component.css']
+})
+export class StotageComponent implements OnInit {
+
+
+  user:Details[]=[
+  
+  ];
+  constructor( private _userservice:UserserviceService) { }
+
+  ngOnInit() {
+    this.user=this._userservice.getUsers();
+  }
+}
+<!--------------------model.ts------------------------------>
+export class Details{
+    username:string;
+    password:string;
+}
+
+<!-----------------service.ts---------------------->
+import { Injectable } from '@angular/core';
+import { Details } from './model';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class UserserviceService {
+  userlist:Details[]=[ 
+  ];
+  getUsers():Details[]{
+      return this.userlist;
+
+  }
+  save(user:Details){                                                         
+     
+      this.userlist.push(user);
+
+  }
+
+}
