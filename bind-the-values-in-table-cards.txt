@@ -1,0 +1,154 @@
+<div class="container" >
+      <!--<input type="text" placeholder="search by name" style="width:300px;margin-top:20px;" [(ngModel)]=" searchTerm"/>-->
+     <div class="row" style="margin-top:20px;" >
+        
+          <div class="col-sm-12"  *ngFor="let emp of employee;let i=index">
+        
+   
+      <div class="card" id="contentToConvert">
+ 
+      
+        <div class="card-body" >
+          <p class="card-text ">ID:EIS{{i+214}}</p>
+          <p class="card-text"> First Name:{{emp.firstname}}</p>
+          <p class="card-text" >Status:{{emp.status}}</p>
+          <p class="card-text">Official Mail:{{emp.fmail}}</p>
+          <p class="card-text">Personal Mail:{{emp.pmail}}</p>
+          <p class="card-text">phone Number:{{emp.phonenumber}}</p>
+          <p class="card-text" >Level: {{emp.level}}</p>
+          <p class="card-text">Payroll-Type:{{emp.pay}}</p>
+          <p class="card-text">Designation:{{emp.designation}}</p>
+          <p class="card-text">CTC:{{emp.ctc}}</p>
+          <p class="card-text">Agreement:{{emp.agreement}}</p>
+          <p class="card-text">Notice Period:{{emp.nperiod}}</p>
+      
+          <div class="card" style="width:500px;">
+              <div class="card-header">
+                  <li class="list-group-item">ID:EIS{{i+214}}</li>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">ID:EIS{{i+214}}</li>
+                <li class="list-group-item">First Name:{{emp.firstname}}</li>
+                <li class="list-group-item">Status:{{emp.status}}</li>
+                <li class="list-group-item">Official Mail:{{emp.fmail}}</li>
+                <li class="list-group-item">Personal Mail:{{emp.pmail}}</li>
+                <li class="list-group-item">phone Number:{{emp.phonenumber}}</li>
+                <li class="list-group-item">Level: {{emp.level}}</li>
+                <li class="list-group-item">Payroll-Type:{{emp.pay}}</li>
+                <li class="list-group-item">Designation:{{emp.designation}}</li>
+                <li class="list-group-item">CTC:{{emp.ctc}}</li>
+                <li class="list-group-item">Agreement:{{emp.agreement}}</li>
+                <li class="list-group-item">Notice Period:{{emp.nperiod}}</li>
+              </ul>
+            </div>
+
+
+            <div class="card">
+                <!-- <div class="card-header">Card Header</div> -->
+             
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Employee</th>
+                            <th>Details</th>
+                         
+                        </tr>
+                    </thead>
+             
+                    <tbody>
+                        <tr>
+                            <td>ID:EIS</td>
+                            <td>{{i+214}}</td>
+                        </tr>
+             
+                        <tr>
+                            <td>First Name:</td>
+                            <td>{{emp.firstname}}</td>
+                        </tr>
+             
+                        <tr>
+                            <td>Status:</td>
+                            <td>{{emp.status}}</td>
+                        </tr>
+                        <tr>
+                            <td>Official Mail:</td>
+                            <td>{{emp.fmail}}</td>
+                        </tr>
+                        <tr>
+                            <td>Personal Mail:</td>
+                            <td>{{emp.pmail}}</td>
+                        </tr>
+                        <tr>
+                            <td>phone Number:</td>
+                            <td>{{emp.phonenumber}}</td>
+                        </tr>
+                        <tr>
+                            <td>Level: </td>
+                            <td>{{emp.level}}</td>
+                        </tr>
+                        <tr>
+                            <td>Payroll-Type:</td>
+                            <td>{{emp.pay}}</td>
+                        </tr>  <tr>
+                            <td>Designation:</td>
+                            <td>{{emp.designation}}</td>
+                        </tr>
+                        <tr>
+                            <td>CTC:</td>
+                            <td>{{emp.ctc}}</td>
+                        </tr>
+                        <tr>
+                            <td>Agreement:</td>
+                            <td>{{emp.agreement}}</td>
+                        </tr>
+                        <tr>
+                            <td>Notice Period:</td>
+                            <td>{{emp.nperiod}}</td>
+                        </tr>
+                      
+                 
+                    </tbody>
+                </table>
+             
+                <div class="card-footer">
+                    Card Footer
+                </div>
+            </div>
+
+      <div class="row">
+        <button class="btn btn-outline-info" (click)="viewemp()"  style="margin-right:5px;margin-left:15px">View</button>
+        <button class="btn btn-outline-info" (click)="editemp()" style="margin-right:5px">Edit</button>
+        <button class="btn btn-outline-danger" (click)="deleteemp(i)">Delete</button>
+        </div>
+
+       
+      </div>
+
+
+     
+     </div>
+
+     
+      </div>
+      
+
+
+     
+
+
+             
+                              
+                      
+              
+      </div>
+</div> 
+
+
+    <div id="content" #content>  
+      
+       
+      <div style="float:right;margin-right:10px;">  
+        <button type="button" value="PDF"  class="btn btn-primary" (click)="captureScreen()">PDF</button>
+      </div>  
+    
+    </div> 
