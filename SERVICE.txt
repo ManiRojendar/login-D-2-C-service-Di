@@ -1,0 +1,381 @@
+<!--------HTML-------->
+
+<app-navbar></app-navbar>
+<div class="jumbotron">
+		<div class="container">
+		
+				
+					<h3 style="text-align:center;margin-bottom:30px">Patient clinical form </h3>
+					<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+						<div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                     <label>First Name</label><span>*</span>
+                                </div>
+                                <div class="col-sm-5">
+                                    <input type="text" formControlName="firstname" [(ngModel)]="patient.firstname" name="firstname" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstname.errors }" />
+                                    <div *ngIf="submitted && f.firstname.errors" class="invalid-feedback">
+                                        <div *ngIf="f.firstname.errors.required">First Name is required</div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+						</div>
+						<div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <label>Last Name</label><span>*</span></div>
+                                    <div class="col-sm-5">
+                                        <input type="text"   [(ngModel)]="patient.lastname" name="lastname" formControlName="lastname" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastname.errors }" />
+                                        <div *ngIf="submitted && f.lastname.errors" class="invalid-feedback">
+                                            <div *ngIf="f.lastname.errors.required">Last Name is required</div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                        
+                        <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <label>Gender*</label><span>*</span></div>
+                                    <div class="col-sm-5">
+                                        <select type="text" [(ngModel)]="patient.Gender" name="Gender" formControlName="Gender" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.Gender.errors }" >
+                                            <option value="male">Male</option>
+                                            <option value="female">Female</option>
+                                       </select>
+
+                                       <div *ngIf="submitted && f.Gender.errors" class="invalid-feedback">
+                                            <div *ngIf="f.Gender.errors.required">Gender is required</div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                           
+                        </div>
+						<div class="form-group"> 
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <label>Date</label><span>*</span>
+                                </div>
+                                <div class="col-sm-5">
+                                    <input type="date" [(ngModel)]="patient.date" name="date" formControlName="date" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.date.errors }" />
+                                    <div *ngIf="submitted && f.date.errors" class="invalid-feedback">
+                                        <div *ngIf="f.date.errors.required">Date is required</div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                               
+                                <div class="row">
+                                        <div class="col-sm-3">
+                                            <label>Patient clinical problem</label><span>*</span>
+                                        </div>
+                                        <div class="col-sm-5">
+                                
+                                            <select type="text" [(ngModel)]="patient.Clinical" name="Clinical" formControlName="Clinical" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.Clinical.errors }" >
+                                            
+                                                <option value="crowning">crowning</option>
+                                                <option value="spacing">spacing</option>
+                                           </select>
+                                           <div *ngIf="submitted && f.Clinical.errors" class="invalid-feedback">
+                                                <div *ngIf="f.Clinical.errors.required">Patient clinical problem is required</div>
+                                                
+                                            </div>
+                                        </div>
+                                </div>
+                                                                        
+                                
+                               
+                        </div>
+
+                      
+                            
+                        <div class="form-group">
+                                <div class="row">
+                                        <div class="col-sm-3">
+                                             <label>Upload Image</label><span>*</span>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <input #file type="file" accept="image/gif, image/jpeg, image/png" formControlName="file" class="form-control-file" [ngClass]="{ 'is-invalid': submitted && f.file.errors }" [(ngModel)]="patient. file" name="file" (change)="preview(file.files)" />
+                                            <div *ngIf="submitted && f.file.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.file.errors.required">file is required</div>
+                                                    
+                                                </div>
+                                       
+                                       
+                                        </div>
+
+
+                                       
+                                       
+                                       
+                                        </div>
+                                
+                        
+                                
+                                
+                             
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <label></label></div>
+                                    <div class="col-sm-5" style="margin-top:10px;">
+                                <img [src]="imgURL" height="200"  *ngIf="imgURL"  ></div>
+
+                              
+                        
+                            </div>
+                        </div>
+                        
+                        
+                    
+                       
+
+
+
+						
+						<div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <label></label></div>
+                                    <div class="col-sm-3">
+                                    <button class="btn btn-info">Save</button>
+                                    </div>
+                                </div>
+                               
+                        </div>
+                       
+					</form>
+			
+			
+		</div>
+	</div>
+
+
+<!-----------------------------------TS--------------------------->
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { PatientsService } from '../patients.service';
+import { Router } from '@angular/router';
+import { Patient } from '../models/patients.models';
+
+@Component({
+  selector: 'app-editpic',
+  templateUrl: './editpic.component.html',
+  styleUrls: ['./editpic.component.css']
+})
+export class EditpicComponent implements OnInit {
+
+  patient:Patient={
+    firstname:null,
+    lastname:null,
+  Gender:null,
+    day:null,
+    month:null,
+    year:null,
+    date:null,
+    Clinical:null,
+    PhotoPath:'select',
+    imgPath:null,
+    file:null,
+   
+   
+  }
+  registerForm: FormGroup;
+  submitted = false;
+
+  constructor(private formBuilder: FormBuilder, private _patientService:PatientsService, private _router:Router) { }
+
+ 
+  ngOnInit() {
+      this.registerForm = this.formBuilder.group({
+          firstname: ['', Validators.required],
+          lastname: ['', Validators.required],
+          date: ['', Validators.required],
+          Gender: ['', Validators.required],
+          Clinical: ['', Validators.required],
+          file: ['', Validators.required],
+
+         
+   
+        
+      });
+  }
+
+  // convenience getter for easy access to form fields
+  get f() { return this.registerForm.controls; }
+
+  onSubmit() {
+      this.submitted = true;
+
+     //stop here if form is invalid
+    if (this.registerForm.invalid) {
+        return;
+     }
+      this._patientService.save(this.patient);
+    this._router.navigate(['car']);
+    /*console.log(this.patient);*/
+      alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value))
+  }
+
+    
+
+
+  
+  onChange(event) {
+    var files = event.srcElement.files;
+    console.log(files);
+  }
+
+
+
+  public imgPath;
+  imgURL: any;
+  public message: string;
+ 
+  preview(files) {
+    if (files.length === 0)
+      return;
+ 
+    var mimeType = files[0].type;
+    if (mimeType.match(/image\/*/) == null) {
+      this.message = "Only images are supported.";
+      return;
+    }
+ 
+    var reader = new FileReader();
+    this.imgPath = files;
+    reader.readAsDataURL(files[0]); 
+    reader.onload = (_event) => { 
+      this.imgURL = reader.result; 
+    }
+  }
+  
+  
+}
+<!--------------------------CSS-------------->
+.container {
+    border-radius: 5px;
+    background-color: white;
+    padding: 20px;
+ 
+    border: 1px solid black;
+  }
+  label{
+    font-weight:bold;
+  }
+ span{
+   color:red;
+ }
+
+<!-----------HTML------------->
+<div class="container">
+        <input type="text" placeholder="search by name" style="width:300px;margin-top:20px;" [(ngModel)]=" searchTerm"/>
+        <div class="row" style="margin-top:20px;" >
+            <div class="col-sm-3"  *ngFor="let Patient of Patients | patientFilter: searchTerm; index as i">
+           
+        <div class="card" style="margin-bottom:20px" >
+          
+          <div class="card-body"  (click)="mouseclick(i)">
+            <p class="card-text">FirstName:{{Patient.firstname}}</p>
+            
+            <p class="card-text" >Lastname:{{Patient.lastname}}</p>
+            <p class="card-text">Gender:{{Patient.Gender}}</p>
+            <p class="card-text">Date:{{Patient.date}}</p>
+            <p class="card-text">Patientclinic problem:{{Patient.Clinical}}</p>
+
+            
+            Image: {{Patient.imgPath}}
+            Image: {{Patient.file}}
+            <img [src]="Patient.imgURL" style="width:30px;">
+        <!-- Image{{Patient.imgPath}}-->
+        <hr>
+        <div class="row">
+          <button class="btn btn-outline-info" (click)="viewPatient()"  style="margin-right:5px;margin-left:15px">View</button>
+          <button class="btn btn-outline-info" (click)="editPatient(Patient.firstname)" style="margin-right:5px">Edit</button>
+          <button class="btn btn-outline-danger" (click)="deletePatient(i)" style="margin-right:5px">Delete</button>
+          </div>
+         
+          </div>
+         
+        </div>
+<!-----------------------------TS--------------------------------->
+
+import { Component, OnInit, EventEmitter } from '@angular/core';
+import { Patient } from '../models/patients.models';
+import { PatientsService } from '../patients.service';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-carrousel',
+  templateUrl: './carrousel.component.html',
+  styleUrls: ['./carrousel.component.css']
+})
+export class CarrouselComponent implements OnInit {
+
+  Patients:Patient[]=[
+   
+  
+  
+  ];
+
+
+  searchTerm:string
+
+  notify:EventEmitter<string>=new EventEmitter<string>();
+  dataFromChild:string;
+  constructor(private _patientservice:PatientsService,private router:Router) { }
+
+
+
+  ngOnInit() {
+    this.Patients=this._patientservice.getPatients();
+  }
+
+  deletePatient(i:number){
+    this.Patients.splice(i,1);
+  }
+  viewPatient(){
+      
+      this.router.navigate(['car']);
+
+  
+  }
+editPatient(Patientfirstname:string){
+ 
+  
+
+  this.router.navigate(['/edit',Patientfirstname]);
+}
+
+
+mouseclick(i:number){
+
+  this.router.navigate(['editclinic'])
+  
+}
+
+
+}
+
+
+
+<!-----------------------------MODEL.TS---------------->
+
+
+export class Patient{
+    firstname:string;
+    lastname:string;
+    Gender:string;
+    day:number;
+    month:number;
+    year:number;
+    date:Date;
+  
+    Clinical:string;
+    PhotoPath:any;
+    imgPath:File|null;
+    file:File;
+
+}

@@ -1,0 +1,96 @@
+<table >
+                <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Name</th>
+                        <th>D.O.B</th>
+                        <th>Age</th>
+                        <th>Occupation</th>
+                        <th>Contact</th>
+                        <th>Action</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let field of fieldArray; let i = index">
+                        <td>
+                            <input [(ngModel)]="field.code" class="form-control" type="text" name="{{field.code}}" />
+                        </td>
+                        <td>
+                            <input [(ngModel)]="field.name" class="form-control" type="text" name="{{field.name}}" />
+                        </td>
+                        <td>
+                            <input [(ngModel)]="field.dob" class="form-control" type="text" name="{{field.dob}}" />
+                        </td>
+                        <td>
+                          <input [(ngModel)]="field.age" class="form-control" type="text" name="{{field.age}}" />
+                      </td>
+
+                        <td>
+                          <input [(ngModel)]="field.occupation" class="form-control" type="text" name="{{field.occupation}}" />
+                      </td>
+                      <td>
+                        <input [(ngModel)]="field.contact" class="form-control" type="text" name="{{field.contact}}" />
+                    </td>
+
+
+                    
+
+
+                        <td>
+                            <button class="btn btn-default"  type="button" (click)="deleteFieldValue(i)"> 
+                              <span class="glyphicon glyphicon-trash"  style="color:red"></span> 
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input class="form-control" type="text" id="newAttributeCode" [(ngModel)]="newAttribute.code" name="newAttributeCode" />
+                        </td>
+                        <td>
+                            <input class="form-control" type="text" id="newAttributeName" [(ngModel)]="newAttribute.name" name="newAttributeName" />
+                        </td>
+                        <td>
+                            <input class="form-control" type="text" id="newAttributeDob" [(ngModel)]="newAttribute.dob" name="newAttributeDob" />
+                        </td>
+                        <td>
+                          <input class="form-control" type="text" id="newAttributeAge" [(ngModel)]="newAttribute.age" name="newAttributeAge" />
+                      </td>
+                        <td>
+                          <input class="form-control" type="text" id="newAttributeOccupation" [(ngModel)]="newAttribute.occupation" name="newAttributeOccupation" />
+                      </td>
+                      <td>
+                        <input class="form-control" type="text" id="newAttributeContact" [(ngModel)]="newAttribute.contact" name="newAttributeContact" />
+                    </td>
+                   
+
+
+                        <td>
+                            <button class="btn btn-default" type="button" (click)="addFieldValue()"> <span class="glyphicon glyphicon-plus" style="color:green"></span></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+<!--ts--->
+
+
+
+private fieldArray: Array<any> = [];
+  private newAttribute: any = {};
+
+  addFieldValue() {
+      this.fieldArray.push(this.newAttribute)
+      this.newAttribute = {};
+  }
+
+  deleteFieldValue(index) {
+      this.fieldArray.splice(index, 1);
+  }
+
+  
+
+
+
+            

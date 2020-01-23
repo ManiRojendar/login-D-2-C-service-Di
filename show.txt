@@ -1,0 +1,119 @@
+
+<mat-sidenav-container fullscreen>
+  <mat-sidenav mode="side" #sidenav opened position="start">
+      <img   src="assets/img/download.png">
+      <ul>
+   <li><a routerLink="/home-tabs" >HOME</a></li>
+   <li><a routerLink="/hr-details" >HR</a></li>
+   <li><a routerLink="/joining-tabs" >JOINING</a></li>
+   <li><a routerLink="/appointment" >APPOINTMENT</a></li>
+   <li><a href="" >DEPARTMENT</a></li>
+   <li><a routerLink="/salary" > PAYSLIP COMPONENT </a></li>
+   <li><a routerLink="/attendence" >ATTENDENCE</a></li>
+   <li><a routerLink="/payslip" >PAYROLL</a></li>
+   <li><a routerLink="/apprisal" >APPRISAL</a></li>
+   <li><a href="" >SEPARATION</a></li>
+   <li><a href="" >RELIVING</a></li>
+   <li><a href="" >TICKET</a></li>
+   
+  </ul>
+
+
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar style="background-color: #08849C;">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon style="color: white;">menu</mat-icon>
+      </button>
+      <h6 style="color: white;">
+        
+        ENVISION INTEGRATED SERVICES PVT.LTD </h6>
+
+      <span class="toolbar-spacer"></span>
+      <button style="background-color: white" mat-raised-button 
+      matBadge="3" matBadgePosition="after" matBadgeColor="accent">
+      Notifications
+      </button>
+          
+      <button  routerLink="/login"  mat-raised-button style="background-color: white; margin-left: 10px;">
+      LOGIN
+      </button>
+   
+      
+    </mat-toolbar>
+    <div class="main-content">
+      
+<div class="container">
+    <table class="table table-bordered " id="contentToConvert" >
+        
+          <tr style="text-align: center;" class="table table-info "> 
+              <th>EMPLOYEE ID</th>
+              <th>EMPLOYEE NAME</th>
+              <th>STATUS</th>
+              <th>OFFICIAL MAIL</th>
+              <Th>PERSONAL MAIL</Th>
+              <th>PHONE NUMBER</th>
+              <th>DATE OF JOINING</th>
+              <th>WORK TYPE</th>
+              <th>WORK PATTERN</th>
+              <th>LEVEL</th>
+              <th>PAYROLL TYPE</th>
+              <th>DESIGNATION</th>
+              <th>CTC</th>
+              <th>AGREEMENT</th>
+              <th>NOTICE PERIOD</th>
+              <th>JOB LOCATION</th>
+              <Th>DATE OF RELIEVING</Th>
+          </tr>
+       
+     
+          <tr *ngFor="let emp of employee;let i=index" style="text-align: center;">
+            <td><a style="color:blue" routerLink="/joining-tabs">{{i+0001}}</a></td> 
+            <td>{{emp.firstname}}</td>
+             <!-- <td><a href="#" style="color:blue">{{emp.id}}</a></td>  -->
+
+             <td style="color: blue">{{emp.status}}</td>
+           <td>
+             {{emp.fmail}}</td>
+           <td>
+             {{emp.pmail}}</td>
+           <td>{{emp.phonenumber}}</td>
+           <td>{{emp.date}}</td>
+            <td>{{emp.wtype}}</td>
+            <td>{{emp.wp}}</td>
+             <td>{{emp.level}}</td>
+           <td>
+               {{emp.pay}}
+             </td>
+            <td>{{emp.designation}}</td> 
+              <td>{{emp.ctc}}</td>
+              <td>{{emp.agreement}}
+             </td>
+             <td>
+               {{emp.nperiod}}
+             </td> 
+    
+        
+          
+                <td>{{emp.job}}</td>
+         
+           
+                <td>{{emp.relieving}}</td>
+       
+          </tr>
+        
+         
+        
+      </table>
+</div> 
+<!-- <div id="content" #content>  
+  
+   
+  <div style="float:right;margin-right:10px;">  
+    <button type="button" value="PDF"  class="btn btn-primary" (click)="captureScreen()">PDF</button>
+  </div>  
+
+</div>  -->
+</div>
+</mat-sidenav-content>
+</mat-sidenav-container>

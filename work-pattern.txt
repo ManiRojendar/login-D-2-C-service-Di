@@ -1,0 +1,187 @@
+<!--------------------------html--------------------->
+<div class="container">
+
+<div *ngIf="newEmployeeClicked">
+
+<form>
+  <table>
+    <thead class="wpa">
+      <tr style="text-align: center;">
+        <th>
+          CODE
+        </th>
+        <th>
+          WORKING DAYS
+          </th>
+          <th>
+ WEEK OFF DAYS
+        </th>
+        <th>
+    DAYS
+      </th>
+      </tr>
+    </thead>
+    <tbody>
+
+  
+    <tr>
+      <td>
+  <div class="form-group">
+
+    <input type="text" class="form-control" id="name" name="name" [(ngModel)]="model.name" placeholder="Code">
+  </div>
+  </td>
+
+   <td>
+
+   <div class="form-group ">
+
+    <input type="text" class="form-control " id="wdays" name="wdays" [(ngModel)]="model.wdays"  placeholder="Working Days">
+  </div>
+  </td>
+  <td>
+  <div class="form-group">
+        <input type="text" class="form-control" id="week" name="week" [(ngModel)]="model.week" placeholder="Week off days">
+      </div>
+      </td>
+    
+       <td>
+
+       <div class="form-group ">
+ 
+        <input type="text" class="form-control " id="days" name="days" [(ngModel)]="model.days"  placeholder="Days">
+      </div>
+      </td>
+  
+  <td>
+
+ 
+    <button type="button" class="btn btn-info"  (click)="addEmployee()">Save</button> &nbsp;
+    <button type="button" class="btn btn-info"  (click)="cancel()">Cancel</button>
+ 
+  </td>
+  
+  </tr>
+</tbody>
+  </table>
+</form>
+
+</div>
+</div>
+<div class="container">
+<form>
+<table class="table table-bordered" >
+        <thead class="wpa"> 
+          <tr style="text-align: center;">
+            <th scope="col">#</th>
+            <th scope="col">WORKING DAYS</th>
+            <th scope="col">WEEKOFF DAYS</th>
+            <th scope="col">DAYS</th>
+            <th scope="col">ACTIONS</th>
+            <th>
+            <button type="button" class="btn btn-info" (click)="addNewEmployeeBtn()" >Add Work Pattern
+              <i class="fa fa-plus-circle" aria-hidden="true"></i>
+      </button>
+      </th>
+           
+          </tr>
+        </thead>
+        <tbody *ngFor="let employee of employees; let i = index" [style.background-color]="changeColorOne()">
+          <tr style="text-align: center;">
+            <th scope="row">{{employee.name}}</th>
+            <td>{{employee.wdays}}</td>
+            <td>{{employee.week}}</td>
+            <td>{{employee.days}}</td>
+            <td> <div class="three">
+                    <button type="button" class="btn btn-outline-primary" (click)="editEmployee(i)">  Edit</button> &nbsp;
+                    <button type="button" class="btn btn-outline-danger" (click)="deleteEmployee(i)">Delete</button>
+                  </div></td>
+          </tr>
+         
+        </tbody>
+      </table>
+      </form>
+</div> -->
+
+<!--------ts------------------>
+
+  // newEmployeeClicked = false;
+
+  // employees = [ 
+  //   { name: 'WA', wdays: '5', week:'2', days:'Sat & Sun Days'},
+  //   { name: 'WB', wdays: '6', week:'1', days:'Saturday'},
+  //   { name: 'WC', wdays: '7', week:'0', days:'---'},
+  // ];
+
+  // color;
+
+  // }
+
+  // model: any = {};
+  // model2: any = {}; 
+
+  // addEmployee() {
+  //   this.employees.push(this.model);
+  //   this.model = {};
+  // }
+
+  // deleteEmployee(i) {
+  //   this.employees.splice(i,1);
+  //   console.log(i);
+  // }
+
+  // myValue;
+
+  // editEmployee(editEmployeeInfo) {
+  //   this.model2.name = this.employees[editEmployeeInfo].name;
+  //   this.model2.wdays = this.employees[editEmployeeInfo].wdays;
+  //   this.myValue = editEmployeeInfo;
+  // }
+
+  // updateEmployee() {
+  //   let editEmployeeInfo = this.myValue;
+  //   for(let i = 0; i < this.employees.length; i++) {
+  //     if(i == editEmployeeInfo) {
+  //       this.employees[i] = this.model2;
+  //       this.model2 = {};
+  //     }
+  //   }
+  // }
+
+
+  // addNewEmployeeBtn() {
+  //   this.newEmployeeClicked = !this.newEmployeeClicked;
+  // }
+
+  //  changeColorOne() {
+  //    this.color = !this.color;
+  //    if (this.color) {
+  //      return '#ffffff';
+  //    } else {
+  //     return '#f6f6f6';
+  //    }
+  // }
+  // public relationship: any[] =[{
+  //   code:'',
+  //   wdays:'',
+  //   week:'',
+  //   days:'',
+   
+  //   }];
+  //   addrelationship() {
+  //     this.relationship.push({
+  //       code:'',
+  //       wdays:'',
+  //       week:'',
+  //       days:'',
+       
+      
+  //     });
+  //   }
+  //   remove(i) {
+  //     this.relationship.splice(i, 1);
+  //   }
+
+
+
+
